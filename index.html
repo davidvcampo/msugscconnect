@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
-    /* ─── VARIABLES ───────────────────────────────────── */
     :root {
       --maroon:       #7B0D1E;
       --maroon-dark:  #560A15;
@@ -24,23 +23,14 @@
       --radius:       14px;
       --transition:   0.3s cubic-bezier(0.4,0,0.2,1);
     }
-
-    /* ─── RESET ───────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* ─── SCROLLBAR ───────────────────────────────────── */
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--cream); }
     ::-webkit-scrollbar-thumb { background: var(--maroon); border-radius: 3px; }
 
-    /* ─── NAVBAR ──────────────────────────────────────── */
+    /* ─── NAVBAR ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
@@ -51,645 +41,235 @@
       box-shadow: 0 2px 20px rgba(123,13,30,0.1);
       transition: var(--transition);
     }
-    .nav-brand {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
-    }
-    .nav-logo {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 2px solid var(--gold);
-      object-fit: cover;
-    }
-    .nav-logo-placeholder {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--maroon);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--gold); font-weight: 900;
-      font-family: 'Playfair Display', serif;
-      border: 2px solid var(--gold);
-      flex-shrink: 0;
-    }
-    .nav-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 700;
-      color: var(--maroon);
-      line-height: 1.1;
-    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+    .nav-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--maroon); line-height: 1.1; }
     .nav-title span { color: var(--gold); }
-    .nav-links {
-      display: flex; align-items: center; gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none; font-size: 0.9rem; font-weight: 500;
-      color: var(--text); position: relative;
-      transition: color var(--transition);
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 2px; background: var(--maroon);
-      transition: width var(--transition);
-    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.9rem; font-weight: 500; color: var(--text); position: relative; transition: color var(--transition); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--maroon); transition: width var(--transition); }
     .nav-links a:hover { color: var(--maroon); }
     .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      display: flex; gap: 10px; align-items: center;
-    }
-    .btn-outline {
-      padding: 8px 20px; border: 2px solid var(--maroon);
-      color: var(--maroon); background: transparent;
-      border-radius: 8px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
-    }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .btn-outline { padding: 8px 20px; border: 2px solid var(--maroon); color: var(--maroon); background: transparent; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif; }
     .btn-outline:hover { background: var(--maroon); color: var(--white); }
-    .btn-fill {
-      padding: 8px 20px; background: var(--maroon);
-      color: var(--white); border: 2px solid var(--maroon);
-      border-radius: 8px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
-    }
+    .btn-fill { padding: 8px 20px; background: var(--maroon); color: var(--white); border: 2px solid var(--maroon); border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif; }
     .btn-fill:hover { background: var(--maroon-dark); border-color: var(--maroon-dark); transform: translateY(-1px); }
 
-    /* ─── HERO ────────────────────────────────────────── */
-    #home {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding-top: 72px;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 10% 60%, rgba(123,13,30,0.06) 0%, transparent 70%),
-        var(--cream);
-      position: relative; overflow: hidden;
-    }
-    #home::before {
-      content: '';
-      position: absolute; top: 0; right: 0;
-      width: 55%; height: 100%;
-      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
-      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
-    }
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 5%;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
-      position: relative; z-index: 2;
-      width: 100%;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.15); border: 1px solid var(--gold);
-      color: var(--gold); padding: 6px 14px; border-radius: 100px;
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; margin-bottom: 1.5rem;
-      animation: fadeUp 0.6s ease both;
-    }
-    .hero-badge::before { content: '★'; font-size: 0.7rem; }
-    h1.hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 900; line-height: 1.1;
-      color: var(--text); margin-bottom: 1.2rem;
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
-    h1.hero-title .accent { color: var(--maroon); }
-    .hero-sub {
-      font-size: 1.05rem; color: var(--gray);
-      line-height: 1.7; margin-bottom: 2rem;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-    .btn-hero-primary {
-      padding: 14px 32px; background: var(--maroon);
-      color: var(--white); border: none; border-radius: 10px;
-      font-size: 1rem; font-weight: 600; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: var(--transition);
-      box-shadow: 0 4px 20px rgba(123,13,30,0.35);
-    }
-    .btn-hero-primary:hover { background: var(--maroon-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(123,13,30,0.4); }
-    .btn-hero-secondary {
-      padding: 14px 32px; background: transparent;
-      color: var(--maroon); border: 2px solid var(--maroon);
-      border-radius: 10px; font-size: 1rem; font-weight: 600;
-      cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: var(--transition);
-    }
-    .btn-hero-secondary:hover { background: var(--maroon); color: var(--white); }
-    .hero-stats {
-      display: flex; gap: 2rem; margin-top: 2.5rem;
-      animation: fadeUp 0.6s 0.4s ease both;
-    }
-    .stat { text-align: left; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem; font-weight: 700; color: var(--maroon);
-    }
-    .stat-label { font-size: 0.78rem; color: var(--gray); font-weight: 500; }
+    /* Nav user info (shown when logged in) */
+    .nav-user { display: flex; align-items: center; gap: 10px; }
+    .nav-user-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--maroon); color: var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; font-family: 'Playfair Display', serif; border: 2px solid var(--gold); }
+    .nav-user-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .btn-logout { padding: 6px 14px; border: 2px solid var(--maroon); color: var(--maroon); background: transparent; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif; }
+    .btn-logout:hover { background: var(--maroon); color: var(--white); }
 
-    /* Hero Right Panel */
-    .hero-right {
-      display: flex; flex-direction: column; gap: 16px;
-      animation: fadeRight 0.8s 0.2s ease both;
-    }
-    .tutor-card-hero {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: var(--radius);
-      padding: 18px 22px;
-      display: flex; align-items: center; gap: 16px;
-      color: var(--white);
-      transition: var(--transition);
-    }
+    /* ─── HERO ── */
+    #home { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 10% 60%, rgba(123,13,30,0.06) 0%, transparent 70%), var(--cream); position: relative; overflow: hidden; }
+    #home::before { content: ''; position: absolute; top: 0; right: 0; width: 55%; height: 100%; background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%); clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 2; width: 100%; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.15); border: 1px solid var(--gold); color: var(--gold); padding: 6px 14px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero-badge::before { content: '★'; font-size: 0.7rem; }
+    h1.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 1.2rem; animation: fadeUp 0.6s 0.1s ease both; }
+    h1.hero-title .accent { color: var(--maroon); }
+    .hero-sub { font-size: 1.05rem; color: var(--gray); line-height: 1.7; margin-bottom: 2rem; animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+    .btn-hero-primary { padding: 14px 32px; background: var(--maroon); color: var(--white); border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); box-shadow: 0 4px 20px rgba(123,13,30,0.35); }
+    .btn-hero-primary:hover { background: var(--maroon-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(123,13,30,0.4); }
+    .btn-hero-secondary { padding: 14px 32px; background: transparent; color: var(--maroon); border: 2px solid var(--maroon); border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
+    .btn-hero-secondary:hover { background: var(--maroon); color: var(--white); }
+    .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; animation: fadeUp 0.6s 0.4s ease both; }
+    .stat { text-align: left; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--maroon); }
+    .stat-label { font-size: 0.78rem; color: var(--gray); font-weight: 500; }
+    .hero-right { display: flex; flex-direction: column; gap: 16px; animation: fadeRight 0.8s 0.2s ease both; }
+    .tutor-card-hero { background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(201,168,76,0.3); border-radius: var(--radius); padding: 18px 22px; display: flex; align-items: center; gap: 16px; color: var(--white); transition: var(--transition); }
     .tutor-card-hero:hover { transform: translateX(6px); background: rgba(255,255,255,0.18); }
-    .tutor-avatar-hero {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--gold); display: flex; align-items: center;
-      justify-content: center; font-size: 1.4rem; font-weight: 700;
-      color: var(--maroon); flex-shrink: 0; font-family: 'Playfair Display', serif;
-      border: 2px solid rgba(201,168,76,0.5);
-    }
+    .tutor-avatar-hero { width: 52px; height: 52px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: var(--maroon); flex-shrink: 0; font-family: 'Playfair Display', serif; border: 2px solid rgba(201,168,76,0.5); }
     .tutor-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
     .tutor-info p { font-size: 0.78rem; opacity: 0.8; }
-    .tutor-badge {
-      margin-left: auto; background: var(--gold);
-      color: var(--maroon); padding: 4px 10px; border-radius: 100px;
-      font-size: 0.72rem; font-weight: 700; white-space: nowrap;
-    }
+    .tutor-badge { margin-left: auto; background: var(--gold); color: var(--maroon); padding: 4px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
 
-    /* ─── SECTION WRAPPER ─────────────────────────────── */
+    /* ─── SECTIONS ── */
     section { padding: 90px 5%; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block; background: rgba(123,13,30,0.08);
-      color: var(--maroon); padding: 5px 14px; border-radius: 100px;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 14px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 700; color: var(--text);
-      margin-bottom: 1rem; line-height: 1.2;
-    }
+    .section-tag { display: inline-block; background: rgba(123,13,30,0.08); color: var(--maroon); padding: 5px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
     .section-title .accent { color: var(--maroon); }
-    .section-sub {
-      color: var(--gray); font-size: 1rem; line-height: 1.7;
-      max-width: 560px;
-    }
+    .section-sub { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 560px; }
     .section-header { margin-bottom: 3.5rem; }
     .section-header.center { text-align: center; }
     .section-header.center .section-sub { margin: 0 auto; }
 
-    /* ─── HOW IT WORKS ────────────────────────────────── */
+    /* ─── HOW IT WORKS ── */
     #how-it-works { background: var(--white); }
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2rem; position: relative;
-    }
-    .steps-grid::before {
-      content: '';
-      position: absolute; top: 44px; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon));
-      z-index: 0;
-    }
-    .step-card {
-      text-align: center; position: relative; z-index: 1;
-    }
-    .step-icon {
-      width: 88px; height: 88px; border-radius: 50%;
-      background: var(--cream); border: 3px solid var(--maroon);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; margin: 0 auto 1.2rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+    .steps-grid::before { content: ''; position: absolute; top: 44px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon)); z-index: 0; }
+    .step-card { text-align: center; position: relative; z-index: 1; }
+    .step-icon { width: 88px; height: 88px; border-radius: 50%; background: var(--cream); border: 3px solid var(--maroon); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.2rem; box-shadow: var(--shadow); transition: var(--transition); }
     .step-card:hover .step-icon { background: var(--maroon); transform: scale(1.08); }
-    .step-num {
-      position: absolute; top: -6px; right: calc(50% - 54px);
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--gold); color: var(--maroon);
-      font-size: 0.7rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .step-num { position: absolute; top: -6px; right: calc(50% - 54px); width: 22px; height: 22px; border-radius: 50%; background: var(--gold); color: var(--maroon); font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
     .step-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
     .step-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
 
-    /* ─── SUBJECTS ────────────────────────────────────── */
+    /* ─── SUBJECTS ── */
     #subjects { background: var(--cream); }
-    .subjects-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-    .subject-chip {
-      background: var(--white); border: 2px solid transparent;
-      border-radius: var(--radius); padding: 20px 16px;
-      text-align: center; cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-    .subject-chip:hover {
-      border-color: var(--maroon);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
+    .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    .subject-chip { background: var(--white); border: 2px solid transparent; border-radius: var(--radius); padding: 20px 16px; text-align: center; cursor: pointer; transition: var(--transition); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .subject-chip:hover { border-color: var(--maroon); transform: translateY(-4px); box-shadow: var(--shadow); }
     .subject-chip .s-icon { font-size: 2rem; margin-bottom: 8px; }
     .subject-chip .s-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
     .subject-chip .s-count { font-size: 0.72rem; color: var(--gray); margin-top: 2px; }
 
-    /* ─── TUTORS ──────────────────────────────────────── */
+    /* ─── TUTORS ── */
     #tutors { background: var(--white); }
-    .tutors-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .tutor-card {
-      background: var(--cream); border-radius: var(--radius);
-      overflow: hidden; border: 1px solid rgba(0,0,0,0.06);
-      transition: var(--transition);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
+    .tutors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .tutor-card { background: var(--cream); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,0.06); transition: var(--transition); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
     .tutor-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .tutor-card-top {
-      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
-      padding: 28px 24px 40px;
-      position: relative;
-    }
-    .tutor-card-top::after {
-      content: '';
-      position: absolute; bottom: -1px; left: 0; right: 0;
-      height: 30px;
-      background: var(--cream);
-      border-radius: 50% 50% 0 0 / 30px 30px 0 0;
-    }
-    .tutor-avatar {
-      width: 72px; height: 72px; border-radius: 50%;
-      background: var(--gold); display: flex; align-items: center;
-      justify-content: center; font-size: 1.8rem; font-weight: 700;
-      color: var(--maroon); border: 3px solid rgba(255,255,255,0.3);
-      font-family: 'Playfair Display', serif; margin-bottom: 12px;
-    }
+    .tutor-card-top { background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%); padding: 28px 24px 40px; position: relative; }
+    .tutor-card-top::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 30px; background: var(--cream); border-radius: 50% 50% 0 0 / 30px 30px 0 0; }
+    .tutor-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700; color: var(--maroon); border: 3px solid rgba(255,255,255,0.3); font-family: 'Playfair Display', serif; margin-bottom: 12px; }
     .tutor-name { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
     .tutor-course { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
-    .online-dot {
-      position: absolute; top: 16px; right: 16px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: #22C55E; border: 2px solid var(--white);
-    }
+    .online-dot { position: absolute; top: 16px; right: 16px; width: 10px; height: 10px; border-radius: 50%; background: #22C55E; border: 2px solid var(--white); }
     .tutor-card-body { padding: 8px 24px 24px; }
-    .tutor-subjects {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
-    }
-    .subject-tag {
-      background: rgba(123,13,30,0.08); color: var(--maroon);
-      padding: 3px 10px; border-radius: 100px;
-      font-size: 0.72rem; font-weight: 600;
-    }
-    .tutor-meta {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 14px;
-    }
+    .tutor-subjects { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .subject-tag { background: rgba(123,13,30,0.08); color: var(--maroon); padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
+    .tutor-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .tutor-rating { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 600; color: var(--text); }
     .tutor-rating span { color: var(--gold); }
     .tutor-sessions { font-size: 0.78rem; color: var(--gray); }
-    .btn-book {
-      width: 100%; padding: 10px;
-      background: var(--maroon); color: var(--white);
-      border: none; border-radius: 8px;
-      font-size: 0.88rem; font-weight: 600; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: var(--transition);
-    }
+    .btn-book { width: 100%; padding: 10px; background: var(--maroon); color: var(--white); border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
     .btn-book:hover { background: var(--maroon-dark); }
 
-    /* ─── WHY MSUGS ───────────────────────────────────── */
-    #why {
-      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
-      position: relative; overflow: hidden;
-    }
-    #why::before {
-      content: '';
-      position: absolute; top: -50%; right: -20%;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: rgba(201,168,76,0.06);
-      pointer-events: none;
-    }
+    /* ─── WHY ── */
+    #why { background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%); position: relative; overflow: hidden; }
+    #why::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; border-radius: 50%; background: rgba(201,168,76,0.06); pointer-events: none; }
     #why .section-title, #why .section-sub { color: var(--white); }
     #why .section-tag { background: rgba(201,168,76,0.2); color: var(--gold-light); }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .why-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: var(--radius); padding: 28px;
-      transition: var(--transition);
-      backdrop-filter: blur(8px);
-    }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .why-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius); padding: 28px; transition: var(--transition); backdrop-filter: blur(8px); }
     .why-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
-    .why-icon {
-      font-size: 2.2rem; margin-bottom: 14px;
-      width: 56px; height: 56px; background: rgba(201,168,76,0.15);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    }
+    .why-icon { font-size: 2.2rem; margin-bottom: 14px; width: 56px; height: 56px; background: rgba(201,168,76,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
     .why-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
     .why-card p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-    /* ─── TESTIMONIALS ────────────────────────────────── */
+    /* ─── TESTIMONIALS ── */
     #testimonials { background: var(--cream); }
-    .testi-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .testi-card {
-      background: var(--white); border-radius: var(--radius);
-      padding: 28px; border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      transition: var(--transition);
-    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .testi-card { background: var(--white); border-radius: var(--radius); padding: 28px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: var(--transition); }
     .testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem; color: var(--maroon); opacity: 0.15;
-      line-height: 1; margin-bottom: -12px;
-    }
-    .testi-text {
-      font-size: 0.9rem; color: var(--gray); line-height: 1.7;
-      margin-bottom: 20px; font-style: italic;
-    }
+    .quote-mark { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--maroon); opacity: 0.15; line-height: 1; margin-bottom: -12px; }
+    .testi-text { font-size: 0.9rem; color: var(--gray); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
     .testi-author { display: flex; align-items: center; gap: 12px; }
-    .testi-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: var(--maroon); display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 700; color: var(--gold);
-      font-family: 'Playfair Display', serif; flex-shrink: 0;
-    }
+    .testi-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--maroon); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; color: var(--gold); font-family: 'Playfair Display', serif; flex-shrink: 0; }
     .testi-name { font-weight: 600; font-size: 0.9rem; }
     .testi-course { font-size: 0.78rem; color: var(--gray); }
     .testi-stars { color: var(--gold); font-size: 0.8rem; margin-top: 2px; }
 
-    /* ─── CTA BANNER ──────────────────────────────────── */
-    #cta {
-      background: var(--white);
-      padding: 60px 5%;
-    }
-    .cta-box {
-      max-width: 1200px; margin: 0 auto;
-      background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
-      border-radius: 24px; padding: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-      position: relative; overflow: hidden;
-    }
-    .cta-box::before {
-      content: '';
-      position: absolute; top: -40px; right: -40px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: rgba(201,168,76,0.12);
-    }
-    .cta-box::after {
-      content: '';
-      position: absolute; bottom: -60px; left: 20%;
-      width: 300px; height: 300px; border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-    }
+    /* ─── CTA ── */
+    #cta { background: var(--white); padding: 60px 5%; }
+    .cta-box { max-width: 1200px; margin: 0 auto; background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%); border-radius: 24px; padding: 60px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; position: relative; overflow: hidden; }
+    .cta-box::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(201,168,76,0.12); }
     .cta-content { position: relative; z-index: 1; }
-    .cta-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700;
-      color: var(--white); margin-bottom: 8px;
-    }
+    .cta-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
     .cta-content p { color: rgba(255,255,255,0.75); font-size: 1rem; }
     .cta-actions { display: flex; gap: 12px; position: relative; z-index: 1; flex-wrap: wrap; }
-    .btn-cta-white {
-      padding: 14px 32px; background: var(--white); color: var(--maroon);
-      border: none; border-radius: 10px; font-size: 1rem; font-weight: 700;
-      cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: var(--transition);
-    }
+    .btn-cta-white { padding: 14px 32px; background: var(--white); color: var(--maroon); border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
     .btn-cta-white:hover { background: var(--gold); color: var(--maroon-dark); transform: translateY(-2px); }
-    .btn-cta-outline {
-      padding: 14px 32px; background: transparent; color: var(--white);
-      border: 2px solid rgba(255,255,255,0.4); border-radius: 10px;
-      font-size: 1rem; font-weight: 600; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; transition: var(--transition);
-    }
+    .btn-cta-outline { padding: 14px 32px; background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
     .btn-cta-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
 
-    /* ─── FOOTER ──────────────────────────────────────── */
-    footer {
-      background: var(--maroon-dark);
-      color: rgba(255,255,255,0.8);
-      padding: 60px 5% 30px;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem; margin-bottom: 3rem;
-    }
-    .footer-brand p {
-      font-size: 0.85rem; line-height: 1.7;
-      margin-top: 12px; color: rgba(255,255,255,0.6);
-      max-width: 280px;
-    }
-    .footer-brand-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 700; color: var(--white);
-    }
+    /* ─── FOOTER ── */
+    footer { background: var(--maroon-dark); color: rgba(255,255,255,0.8); padding: 60px 5% 30px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 12px; color: rgba(255,255,255,0.6); max-width: 280px; }
+    .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
     .footer-brand-name span { color: var(--gold); }
     .footer-col h4 { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 0.9rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul li a {
-      text-decoration: none; font-size: 0.85rem;
-      color: rgba(255,255,255,0.6); transition: color var(--transition);
-    }
+    .footer-col ul li a { text-decoration: none; font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color var(--transition); }
     .footer-col ul li a:hover { color: var(--gold); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
-    .footer-badge {
-      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold); padding: 4px 12px; border-radius: 100px;
-      font-size: 0.72rem; font-weight: 600;
-    }
+    .footer-badge { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
 
-    /* ─── MODAL ───────────────────────────────────────── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(6px); z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-    }
+    /* ─── MODAL ── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal {
-      background: var(--white); border-radius: 20px;
-      padding: 40px; width: 440px; max-width: 95vw;
-      position: relative;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.25);
-    }
+    .modal { background: var(--white); border-radius: 20px; padding: 40px; width: 440px; max-width: 95vw; position: relative; transform: translateY(20px) scale(0.97); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 24px 80px rgba(0,0,0,0.25); max-height: 90vh; overflow-y: auto; }
     .modal-overlay.active .modal { transform: translateY(0) scale(1); }
-    .modal-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--gray-light); border: none;
-      font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: var(--transition);
-    }
+    .modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--gray-light); border: none; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
     .modal-close:hover { background: var(--maroon); color: var(--white); }
-    .modal-logo {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
-    }
-    .modal-logo-icon {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--maroon); display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-family: 'Playfair Display', serif;
-      font-weight: 900; font-size: 16px;
-    }
+    .modal-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .modal-logo-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--maroon); display: flex; align-items: center; justify-content: center; color: var(--gold); font-family: 'Playfair Display', serif; font-weight: 900; font-size: 16px; }
     .modal-logo-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--maroon); }
-    .modal h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700; color: var(--text);
-      margin-bottom: 6px;
-    }
+    .modal h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
     .modal-sub { font-size: 0.85rem; color: var(--gray); margin-bottom: 24px; }
-    .modal-tabs {
-      display: flex; gap: 0; margin-bottom: 24px;
-      background: var(--gray-light); border-radius: 10px; padding: 4px;
-    }
-    .modal-tab {
-      flex: 1; padding: 9px; border: none; background: transparent;
-      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
-      cursor: pointer; color: var(--gray); transition: var(--transition);
-      font-family: 'DM Sans', sans-serif;
-    }
+    .modal-tabs { display: flex; gap: 0; margin-bottom: 24px; background: var(--gray-light); border-radius: 10px; padding: 4px; }
+    .modal-tab { flex: 1; padding: 9px; border: none; background: transparent; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: var(--gray); transition: var(--transition); font-family: 'DM Sans', sans-serif; }
     .modal-tab.active { background: var(--white); color: var(--maroon); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .form-group input, .form-group select {
-      width: 100%; padding: 11px 14px;
-      border: 2px solid #E5E7EB; border-radius: 8px;
-      font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
-      color: var(--text); outline: none;
-      transition: border-color var(--transition);
-      background: var(--white);
-    }
+    .form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 2px solid #E5E7EB; border-radius: 8px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: border-color var(--transition); background: var(--white); }
     .form-group input:focus, .form-group select:focus { border-color: var(--maroon); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .btn-submit {
-      width: 100%; padding: 13px;
-      background: var(--maroon); color: var(--white);
-      border: none; border-radius: 10px;
-      font-size: 0.95rem; font-weight: 700; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: var(--transition); margin-top: 4px;
-    }
+    .btn-submit { width: 100%; padding: 13px; background: var(--maroon); color: var(--white); border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); margin-top: 4px; }
     .btn-submit:hover { background: var(--maroon-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
     .modal-footer-text { text-align: center; font-size: 0.8rem; color: var(--gray); margin-top: 14px; }
     .modal-footer-text a { color: var(--maroon); font-weight: 600; text-decoration: none; }
     .form-panel { display: none; }
     .form-panel.active { display: block; }
-    .divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
-    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
-    .divider span { font-size: 0.78rem; color: var(--gray); white-space: nowrap; }
+    .form-error { color: #DC2626; font-size: 0.8rem; margin-top: 6px; display: none; }
+    .form-error.show { display: block; }
 
-    /* ─── BOOKING MODAL ───────────────────────────────── */
-    #bookingModal .modal { max-height: 90vh; overflow-y: auto; }
-
-    /* ─── TOAST ───────────────────────────────────────── */
-    .toast {
-      position: fixed; bottom: 24px; right: 24px; z-index: 99999;
-      background: var(--maroon); color: var(--white);
-      padding: 14px 22px; border-radius: 10px;
-      font-size: 0.88rem; font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      transform: translateY(100px) scale(0.9); opacity: 0;
-      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .toast.show { transform: translateY(0) scale(1); opacity: 1; }
-    .toast.success { background: #059669; }
-
-    /* ─── SEARCH BAR ──────────────────────────────────── */
-    .search-section {
-      background: var(--white);
-      padding: 40px 5%;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    .search-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-    }
-    .search-box {
-      flex: 1; min-width: 240px;
-      display: flex; align-items: center; gap: 10px;
-      background: var(--gray-light); border: 2px solid transparent;
-      border-radius: 10px; padding: 0 16px;
-      transition: var(--transition);
-    }
+    /* ─── SEARCH ── */
+    .search-section { background: var(--white); padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .search-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .search-box { flex: 1; min-width: 240px; display: flex; align-items: center; gap: 10px; background: var(--gray-light); border: 2px solid transparent; border-radius: 10px; padding: 0 16px; transition: var(--transition); }
     .search-box:focus-within { border-color: var(--maroon); background: var(--white); }
-    .search-box input {
-      flex: 1; border: none; background: transparent;
-      padding: 12px 0; font-size: 0.9rem;
-      font-family: 'DM Sans', sans-serif; outline: none; color: var(--text);
-    }
+    .search-box input { flex: 1; border: none; background: transparent; padding: 12px 0; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; outline: none; color: var(--text); }
     .search-icon { font-size: 1rem; color: var(--gray); }
-    .filter-select {
-      padding: 12px 16px; border: 2px solid #E5E7EB;
-      border-radius: 10px; font-size: 0.88rem;
-      font-family: 'DM Sans', sans-serif; color: var(--text);
-      background: var(--white); outline: none; cursor: pointer;
-      transition: border-color var(--transition);
-    }
+    .filter-select { padding: 12px 16px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 0.88rem; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); outline: none; cursor: pointer; transition: border-color var(--transition); }
     .filter-select:focus { border-color: var(--maroon); }
-    .btn-search {
-      padding: 12px 28px; background: var(--maroon); color: var(--white);
-      border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 600;
-      cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition);
-    }
+    .btn-search { padding: 12px 28px; background: var(--maroon); color: var(--white); border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
     .btn-search:hover { background: var(--maroon-dark); }
 
-    /* ─── ANIMATIONS ──────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeRight {
-      from { opacity: 0; transform: translateX(24px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50%       { transform: scale(1.04); }
-    }
+    /* ─── TOAST ── */
+    .toast { position: fixed; bottom: 24px; right: 24px; z-index: 99999; background: var(--maroon); color: var(--white); padding: 14px 22px; border-radius: 10px; font-size: 0.88rem; font-weight: 500; box-shadow: var(--shadow-lg); transform: translateY(100px) scale(0.9); opacity: 0; transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; gap: 8px; max-width: 360px; }
+    .toast.show { transform: translateY(0) scale(1); opacity: 1; }
+    .toast.success { background: #059669; }
+    .toast.error { background: #DC2626; }
+
+    /* ─── LOADING SPINNER ── */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 8px; vertical-align: middle; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── HAMBURGER (MOBILE) ──────────────────────────── */
+    /* ─── MOBILE ── */
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--maroon); border-radius: 2px; transition: var(--transition); display: block; }
-    .mobile-menu {
-      display: none; position: fixed; top: 72px; left: 0; right: 0;
-      background: var(--white); border-bottom: 2px solid var(--gold);
-      padding: 20px 5%; z-index: 999; flex-direction: column; gap: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    }
+    .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--white); border-bottom: 2px solid var(--gold); padding: 20px 5%; z-index: 999; flex-direction: column; gap: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { text-decoration: none; font-weight: 500; color: var(--text); font-size: 0.95rem; }
 
-    /* ─── RESPONSIVE ──────────────────────────────────── */
+    /* ─── DASHBOARD ── */
+    .dashboard-banner { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: white; padding: 16px 5%; display: none; }
+    .dashboard-banner.show { display: block; }
+    .dashboard-banner-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .dashboard-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+    .dashboard-banner p { font-size: 0.85rem; opacity: 0.8; margin-top: 2px; }
+    .dashboard-stats { display: flex; gap: 24px; }
+    .db-stat { text-align: center; }
+    .db-stat-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .db-stat-label { font-size: 0.72rem; opacity: 0.7; }
+
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .steps-grid { grid-template-columns: repeat(2,1fr); }
@@ -707,12 +287,13 @@
       .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .cta-box { flex-direction: column; text-align: center; }
       .form-row { grid-template-columns: 1fr; }
+      .dashboard-stats { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAVBAR ─────────────────────────────────────────── -->
+<!-- ─── NAVBAR ── -->
 <nav>
   <a href="#home" class="nav-brand">
     <img src="MSU_-_Gensan_logo.png" class="nav-logo" alt="MSU Logo">
@@ -725,9 +306,16 @@
     <li><a href="#tutors">Find Tutors</a></li>
     <li><a href="#why">Why Us</a></li>
   </ul>
-  <div class="nav-cta">
+  <!-- Logged OUT state -->
+  <div class="nav-cta" id="navLoggedOut">
     <button class="btn-outline" onclick="openModal('loginModal')">Log In</button>
     <button class="btn-fill" onclick="openModal('signupModal')">Sign Up Free</button>
+  </div>
+  <!-- Logged IN state -->
+  <div class="nav-user" id="navLoggedIn" style="display:none">
+    <div class="nav-user-avatar" id="navAvatar">U</div>
+    <span class="nav-user-name" id="navUserName">User</span>
+    <button class="btn-logout" onclick="handleLogout()">Log Out</button>
   </div>
   <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -745,18 +333,27 @@
   <button class="btn-fill" style="width:100%" onclick="closeMobile();openModal('signupModal')">Sign Up Free</button>
 </div>
 
-<!-- ─── HERO ───────────────────────────────────────────── -->
+<!-- Dashboard Welcome Banner (shown when logged in) -->
+<div class="dashboard-banner" id="dashboardBanner">
+  <div class="dashboard-banner-inner">
+    <div>
+      <h3>Welcome back, <span id="bannerName">Student</span>! 👋</h3>
+      <p id="bannerRole">You are logged in as a Student</p>
+    </div>
+    <div class="dashboard-stats">
+      <div class="db-stat"><div class="db-stat-num" id="statBookings">0</div><div class="db-stat-label">My Bookings</div></div>
+      <div class="db-stat"><div class="db-stat-num" id="statRole">—</div><div class="db-stat-label">Role</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERO ── -->
 <section id="home">
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-badge">MSU Gen. Santos City • Student-Powered Platform</div>
-      <h1 class="hero-title">
-        Connecting <span class="accent">Minds,</span><br>
-        Fostering Excellence<br>in One Swipe!
-      </h1>
-      <p class="hero-sub">
-        MSUGSConnect is the official peer-tutoring platform of Mindanao State University – Gen. Santos City. Get matched with top student-tutors in any subject, any time.
-      </p>
+      <h1 class="hero-title">Connecting <span class="accent">Minds,</span><br>Fostering Excellence<br>in One Swipe!</h1>
+      <p class="hero-sub">MSUGSConnect is the official peer-tutoring platform of Mindanao State University – Gen. Santos City. Get matched with top student-tutors in any subject, any time.</p>
       <div class="hero-actions">
         <button class="btn-hero-primary" onclick="document.getElementById('tutors').scrollIntoView({behavior:'smooth'})">Find a Tutor →</button>
         <button class="btn-hero-secondary" onclick="openModal('signupModal')">Become a Tutor</button>
@@ -768,43 +365,15 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="tutor-card-hero">
-        <div class="tutor-avatar-hero">J</div>
-        <div class="tutor-info">
-          <h4>Jerome Aparri</h4>
-          <p>MS Physics • Graduated</p>
-        </div>
-        <div class="tutor-badge">Available</div>
-      </div>
-      <div class="tutor-card-hero">
-        <div class="tutor-avatar-hero">D</div>
-        <div class="tutor-info">
-          <h4>David Vrant Campo</h4>
-          <p>BS Chemistry • 3rd Year</p>
-        </div>
-        <div class="tutor-badge">Available</div>
-      </div>
-      <div class="tutor-card-hero">
-        <div class="tutor-avatar-hero">A</div>
-        <div class="tutor-info">
-          <h4>Andrea Danielle Buenaflor</h4>
-          <p>BS Psychology • 4th Year</p>
-        </div>
-        <div class="tutor-badge">Available</div>
-      </div>
-      <div class="tutor-card-hero">
-        <div class="tutor-avatar-hero">S</div>
-        <div class="tutor-info">
-          <h4>Simson Ralph Arapoc</h4>
-          <p>BS Physics • 3rd Year</p>
-        </div>
-        <div class="tutor-badge">Available</div>
-      </div>
+      <div class="tutor-card-hero"><div class="tutor-avatar-hero">J</div><div class="tutor-info"><h4>Jerome Aparri</h4><p>MS Physics • Graduated</p></div><div class="tutor-badge">Available</div></div>
+      <div class="tutor-card-hero"><div class="tutor-avatar-hero">D</div><div class="tutor-info"><h4>David Vrant Campo</h4><p>BS Chemistry • 3rd Year</p></div><div class="tutor-badge">Available</div></div>
+      <div class="tutor-card-hero"><div class="tutor-avatar-hero">A</div><div class="tutor-info"><h4>Andrea Danielle Buenaflor</h4><p>BS Psychology • 4th Year</p></div><div class="tutor-badge">Available</div></div>
+      <div class="tutor-card-hero"><div class="tutor-avatar-hero">S</div><div class="tutor-info"><h4>Simson Ralph Arapoc</h4><p>BS Physics • 3rd Year</p></div><div class="tutor-badge">Available</div></div>
     </div>
   </div>
 </section>
 
-<!-- ─── SEARCH ─────────────────────────────────────────── -->
+<!-- ─── SEARCH ── -->
 <div class="search-section">
   <div class="search-inner">
     <div class="search-box">
@@ -813,30 +382,20 @@
     </div>
     <select class="filter-select" id="subjectFilter">
       <option value="">All Subjects</option>
-      <option>Mathematics</option>
-      <option>Physics</option>
-      <option>Chemistry</option>
-      <option>Biology</option>
-      <option>Computer Science</option>
-      <option>Engineering</option>
-      <option>English</option>
-      <option>Filipino</option>
-      <option>History</option>
-      <option>Economics</option>
-      <option>Psychology</option>
+      <option>Mathematics</option><option>Physics</option><option>Chemistry</option>
+      <option>Biology</option><option>Computer Science</option><option>Engineering</option>
+      <option>English</option><option>Filipino</option><option>History</option>
+      <option>Economics</option><option>Psychology</option>
     </select>
     <select class="filter-select">
-      <option>All Years</option>
-      <option>1st Year</option>
-      <option>2nd Year</option>
-      <option>3rd Year</option>
-      <option>4th Year</option>
+      <option>All Years</option><option>1st Year</option><option>2nd Year</option>
+      <option>3rd Year</option><option>4th Year</option>
     </select>
     <button class="btn-search" onclick="filterTutors()">Search</button>
   </div>
 </div>
 
-<!-- ─── HOW IT WORKS ───────────────────────────────────── -->
+<!-- ─── HOW IT WORKS ── -->
 <section id="how-it-works">
   <div class="section-inner">
     <div class="section-header center fade-in">
@@ -845,31 +404,15 @@
       <p class="section-sub">Getting started with MSUGSConnect is quick and completely free for all MSU-GenSan students.</p>
     </div>
     <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-icon">📝<div class="step-num">1</div></div>
-        <h3>Create Your Account</h3>
-        <p>Sign up using your MSU student ID and verify your enrollment status.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-icon">🔎<div class="step-num">2</div></div>
-        <h3>Browse Tutors</h3>
-        <p>Search by subject, year level, or availability to find the perfect match.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-icon">📅<div class="step-num">3</div></div>
-        <h3>Book a Session</h3>
-        <p>Schedule a one-on-one or group session at a time that works for you.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-icon">🎓<div class="step-num">4</div></div>
-        <h3>Learn & Excel</h3>
-        <p>Attend your session, learn effectively, and rate your tutor.</p>
-      </div>
+      <div class="step-card fade-in"><div class="step-icon">📝<div class="step-num">1</div></div><h3>Create Your Account</h3><p>Sign up using your MSU student ID and verify your enrollment status.</p></div>
+      <div class="step-card fade-in"><div class="step-icon">🔎<div class="step-num">2</div></div><h3>Browse Tutors</h3><p>Search by subject, year level, or availability to find the perfect match.</p></div>
+      <div class="step-card fade-in"><div class="step-icon">📅<div class="step-num">3</div></div><h3>Book a Session</h3><p>Schedule a one-on-one or group session at a time that works for you.</p></div>
+      <div class="step-card fade-in"><div class="step-icon">🎓<div class="step-num">4</div></div><h3>Learn & Excel</h3><p>Attend your session, learn effectively, and rate your tutor.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ─── SUBJECTS ───────────────────────────────────────── -->
+<!-- ─── SUBJECTS ── -->
 <section id="subjects">
   <div class="section-inner">
     <div class="section-header fade-in">
@@ -895,7 +438,7 @@
   </div>
 </section>
 
-<!-- ─── TUTORS ─────────────────────────────────────────── -->
+<!-- ─── TUTORS ── -->
 <section id="tutors">
   <div class="section-inner">
     <div class="section-header fade-in">
@@ -903,16 +446,14 @@
       <h2 class="section-title">Meet Our <span class="accent">Top Tutors</span></h2>
       <p class="section-sub">All tutors are verified MSU-GenSan students with excellent academic standing.</p>
     </div>
-    <div class="tutors-grid" id="tutorsGrid">
-      <!-- Tutor cards injected by JS -->
-    </div>
+    <div class="tutors-grid" id="tutorsGrid"></div>
     <div style="text-align:center; margin-top:2.5rem;" class="fade-in">
       <button class="btn-hero-primary" onclick="openModal('signupModal')">View All Tutors →</button>
     </div>
   </div>
 </section>
 
-<!-- ─── WHY ────────────────────────────────────────────── -->
+<!-- ─── WHY ── -->
 <section id="why">
   <div class="section-inner">
     <div class="section-header center fade-in">
@@ -921,41 +462,17 @@
       <p class="section-sub" style="color:rgba(255,255,255,0.7); margin:0 auto;">We understand your curriculum, your professors, and your struggles — because we're in the same classes as you.</p>
     </div>
     <div class="why-grid">
-      <div class="why-card fade-in">
-        <div class="why-icon">✅</div>
-        <h3>Verified MSU Students Only</h3>
-        <p>Every tutor is a currently enrolled MSU-GenSan student with verified academic records and good standing.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🆓</div>
-        <h3>Free to Use</h3>
-        <p>MSUGSConnect is completely free for all students. No hidden charges, no subscription fees — ever.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">📚</div>
-        <h3>MSU Curriculum-Aligned</h3>
-        <p>Tutors know your exact professors, syllabi, and exam formats — maximizing your learning efficiency.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">⚡</div>
-        <h3>Instant Matching</h3>
-        <p>Our smart system matches you with the best available tutor for your subject in seconds.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">🌐</div>
-        <h3>Online & In-Person</h3>
-        <p>Choose between flexible online sessions via Google Meet or face-to-face at campus study areas.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">⭐</div>
-        <h3>Rated & Reviewed</h3>
-        <p>Every session is rated so you always get the highest-quality tutoring experience guaranteed.</p>
-      </div>
+      <div class="why-card fade-in"><div class="why-icon">✅</div><h3>Verified MSU Students Only</h3><p>Every tutor is a currently enrolled MSU-GenSan student with verified academic records and good standing.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">🆓</div><h3>Free to Use</h3><p>MSUGSConnect is completely free for all students. No hidden charges, no subscription fees — ever.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">📚</div><h3>MSU Curriculum-Aligned</h3><p>Tutors know your exact professors, syllabi, and exam formats — maximizing your learning efficiency.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">⚡</div><h3>Instant Matching</h3><p>Our smart system matches you with the best available tutor for your subject in seconds.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">🌐</div><h3>Online & In-Person</h3><p>Choose between flexible online sessions via Google Meet or face-to-face at campus study areas.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">⭐</div><h3>Rated & Reviewed</h3><p>Every session is rated so you always get the highest-quality tutoring experience guaranteed.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ─── TESTIMONIALS ───────────────────────────────────── -->
+<!-- ─── TESTIMONIALS ── -->
 <section id="testimonials">
   <div class="section-inner">
     <div class="section-header center fade-in">
@@ -963,47 +480,14 @@
       <h2 class="section-title">What <span class="accent">Students Say</span></h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card fade-in">
-        <div class="quote-mark">"</div>
-        <p class="testi-text">I was failing Calculus until I found a tutor on MSUGSConnect. My tutor knew exactly what our professor focuses on in exams. I passed with flying colors!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">K</div>
-          <div>
-            <div class="testi-name">Kristine Bautista</div>
-            <div class="testi-course">BS Engineering, 2nd Year</div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="quote-mark">"</div>
-        <p class="testi-text">As a tutor, MSUGSConnect helped me earn experience while helping my fellow Mustangs. It's rewarding to give back to our MSU community this way.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">D</div>
-          <div>
-            <div class="testi-name">Daniel Estrada</div>
-            <div class="testi-course">BS Computer Science, 4th Year</div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card fade-in">
-        <div class="quote-mark">"</div>
-        <p class="testi-text">The matching system is incredible. Within minutes I found a Chemistry tutor who helped me understand Organic Chem — a subject I dreaded for months!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">S</div>
-          <div>
-            <div class="testi-name">Sophia Tan</div>
-            <div class="testi-course">BS Biology, 1st Year</div>
-            <div class="testi-stars">★★★★★</div>
-          </div>
-        </div>
-      </div>
+      <div class="testi-card fade-in"><div class="quote-mark">"</div><p class="testi-text">I was failing Calculus until I found a tutor on MSUGSConnect. My tutor knew exactly what our professor focuses on in exams. I passed with flying colors!</p><div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name">Kristine Bautista</div><div class="testi-course">BS Engineering, 2nd Year</div><div class="testi-stars">★★★★★</div></div></div></div>
+      <div class="testi-card fade-in"><div class="quote-mark">"</div><p class="testi-text">As a tutor, MSUGSConnect helped me earn experience while helping my fellow Mustangs. It's rewarding to give back to our MSU community this way.</p><div class="testi-author"><div class="testi-avatar">D</div><div><div class="testi-name">Daniel Estrada</div><div class="testi-course">BS Computer Science, 4th Year</div><div class="testi-stars">★★★★★</div></div></div></div>
+      <div class="testi-card fade-in"><div class="quote-mark">"</div><p class="testi-text">The matching system is incredible. Within minutes I found a Chemistry tutor who helped me understand Organic Chem — a subject I dreaded for months!</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophia Tan</div><div class="testi-course">BS Biology, 1st Year</div><div class="testi-stars">★★★★★</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ─── CTA ────────────────────────────────────────────── -->
+<!-- ─── CTA ── -->
 <section id="cta">
   <div class="section-inner">
     <div class="cta-box fade-in">
@@ -1019,7 +503,7 @@
   </div>
 </section>
 
-<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<!-- ─── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
@@ -1027,33 +511,9 @@
         <div class="footer-brand-name">MSUGS<span>Connect</span></div>
         <p>The official peer-tutoring platform of Mindanao State University – Gen. Santos City. Connecting minds, fostering excellence — one swipe at a time.</p>
       </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#tutors">Find Tutors</a></li>
-          <li><a href="#subjects">Browse Subjects</a></li>
-          <li><a href="#" onclick="openModal('signupModal')">Become a Tutor</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Report an Issue</a></li>
-          <li><a href="#">Community Guidelines</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>University</h4>
-        <ul>
-          <li><a href="https://msugensan.edu.ph" target="_blank">MSU-GenSan Website</a></li>
-          <li><a href="#">Student Affairs Office</a></li>
-          <li><a href="#">Academic Calendar</a></li>
-          <li><a href="#">Library Resources</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Platform</h4><ul><li><a href="#how-it-works">How It Works</a></li><li><a href="#tutors">Find Tutors</a></li><li><a href="#subjects">Browse Subjects</a></li><li><a href="#" onclick="openModal('signupModal')">Become a Tutor</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="#">FAQs</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Report an Issue</a></li><li><a href="#">Community Guidelines</a></li></ul></div>
+      <div class="footer-col"><h4>University</h4><ul><li><a href="https://msugensan.edu.ph" target="_blank">MSU-GenSan Website</a></li><li><a href="#">Student Affairs Office</a></li><li><a href="#">Academic Calendar</a></li><li><a href="#">Library Resources</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <p>© 2025 MSUGSConnect. A project for MSU-Gen. Santos City. All rights reserved.</p>
@@ -1062,38 +522,33 @@
   </div>
 </footer>
 
-<!-- ─── LOGIN MODAL ────────────────────────────────────── -->
+<!-- ─── LOGIN MODAL ── -->
 <div class="modal-overlay" id="loginModal" onclick="handleOverlayClick(event, 'loginModal')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('loginModal')">×</button>
-    <div class="modal-logo">
-      <div class="modal-logo-icon">M</div>
-      <span class="modal-logo-text">MSUGSConnect</span>
-    </div>
+    <div class="modal-logo"><div class="modal-logo-icon">M</div><span class="modal-logo-text">MSUGSConnect</span></div>
     <h2>Welcome Back!</h2>
     <p class="modal-sub">Log in to continue your learning journey.</p>
     <div class="form-group">
-      <label>MSU Student ID or Email</label>
-      <input type="text" placeholder="e.g. 2021-12345 or student@msu.edu.ph">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="student@msu.edu.ph">
     </div>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" placeholder="Enter your password">
+      <input type="password" id="loginPassword" placeholder="Enter your password">
     </div>
-    <button class="btn-submit" onclick="handleLogin()">Log In to MSUGSConnect</button>
+    <div class="form-error" id="loginError"></div>
+    <button class="btn-submit" id="loginBtn" onclick="handleLogin()">Log In to MSUGSConnect</button>
     <p class="modal-footer-text">Don't have an account? <a href="#" onclick="switchModal('loginModal','signupModal')">Sign up free</a></p>
-    <p class="modal-footer-text" style="margin-top:8px"><a href="#" style="color:var(--gray)">Forgot password?</a></p>
+    <p class="modal-footer-text" style="margin-top:8px"><a href="#" onclick="handleForgotPassword()" style="color:var(--gray)">Forgot password?</a></p>
   </div>
 </div>
 
-<!-- ─── SIGNUP MODAL ───────────────────────────────────── -->
+<!-- ─── SIGNUP MODAL ── -->
 <div class="modal-overlay" id="signupModal" onclick="handleOverlayClick(event, 'signupModal')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('signupModal')">×</button>
-    <div class="modal-logo">
-      <div class="modal-logo-icon">M</div>
-      <span class="modal-logo-text">MSUGSConnect</span>
-    </div>
+    <div class="modal-logo"><div class="modal-logo-icon">M</div><span class="modal-logo-text">MSUGSConnect</span></div>
     <h2>Join MSUGSConnect</h2>
     <p class="modal-sub">Free for all MSU-GenSan students. Choose your role:</p>
     <div class="modal-tabs">
@@ -1103,77 +558,58 @@
     <!-- Student Form -->
     <div class="form-panel active" id="panelStudent">
       <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="Juan"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="dela Cruz"></div>
+        <div class="form-group"><label>First Name</label><input type="text" id="sFirstName" placeholder="Juan"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="sLastName" placeholder="dela Cruz"></div>
       </div>
-      <div class="form-group"><label>MSU Student ID</label><input type="text" placeholder="2021-12345"></div>
-      <div class="form-group"><label>MSU Email</label><input type="email" placeholder="student@msu.edu.ph"></div>
+      <div class="form-group"><label>MSU Student ID</label><input type="text" id="sStudentId" placeholder="2021-12345"></div>
+      <div class="form-group"><label>Email</label><input type="email" id="sEmail" placeholder="student@msu.edu.ph"></div>
       <div class="form-group">
         <label>Course / Program</label>
-        <select>
-          <option>Select your course...</option>
-          <option>BS Computer Science</option>
-          <option>BS Information Technology</option>
-          <option>BS Mathematics</option>
-          <option>BS Physics</option>
-          <option>BS Chemistry</option>
-          <option>BS Biology</option>
-          <option>BS Engineering</option>
-          <option>BS Education</option>
-          <option>AB English</option>
-          <option>BS Nursing</option>
-          <option>BS Economics</option>
-          <option>BS Psychology</option>
-          <option>Other</option>
+        <select id="sCourse">
+          <option value="">Select your course...</option>
+          <option>BS Computer Science</option><option>BS Information Technology</option>
+          <option>BS Mathematics</option><option>BS Physics</option><option>BS Chemistry</option>
+          <option>BS Biology</option><option>BS Engineering</option><option>BS Education</option>
+          <option>AB English</option><option>BS Nursing</option><option>BS Economics</option>
+          <option>BS Psychology</option><option>Other</option>
         </select>
       </div>
-      <div class="form-group"><label>Password</label><input type="password" placeholder="Create a strong password"></div>
-      <button class="btn-submit" onclick="handleSignup('student')">Create Student Account</button>
+      <div class="form-group"><label>Password</label><input type="password" id="sPassword" placeholder="Create a strong password (min. 6 chars)"></div>
+      <div class="form-error" id="signupStudentError"></div>
+      <button class="btn-submit" id="signupStudentBtn" onclick="handleSignup('student')">Create Student Account</button>
     </div>
     <!-- Tutor Form -->
     <div class="form-panel" id="panelTutor">
       <div class="form-row">
-        <div class="form-group"><label>First Name</label><input type="text" placeholder="Maria"></div>
-        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Santos"></div>
+        <div class="form-group"><label>First Name</label><input type="text" id="tFirstName" placeholder="Maria"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="tLastName" placeholder="Santos"></div>
       </div>
-      <div class="form-group"><label>MSU Student ID</label><input type="text" placeholder="2020-12345"></div>
-      <div class="form-group"><label>MSU Email</label><input type="email" placeholder="tutor@msu.edu.ph"></div>
+      <div class="form-group"><label>MSU Student ID</label><input type="text" id="tStudentId" placeholder="2020-12345"></div>
+      <div class="form-group"><label>Email</label><input type="email" id="tEmail" placeholder="tutor@msu.edu.ph"></div>
       <div class="form-group">
         <label>Course / Program</label>
-        <select>
-          <option>Select your course...</option>
-          <option>BS Computer Science</option>
-          <option>BS Information Technology</option>
-          <option>BS Mathematics</option>
-          <option>BS Physics</option>
-          <option>BS Chemistry</option>
-          <option>BS Biology</option>
-          <option>BS Engineering</option>
-          <option>AB English</option>
-          <option>BS Economics</option>
-          <option>BS Psychology</option>
-          <option>Other</option>
+        <select id="tCourse">
+          <option value="">Select your course...</option>
+          <option>BS Computer Science</option><option>BS Information Technology</option>
+          <option>BS Mathematics</option><option>BS Physics</option><option>BS Chemistry</option>
+          <option>BS Biology</option><option>BS Engineering</option><option>AB English</option>
+          <option>BS Economics</option><option>BS Psychology</option><option>Other</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Subjects You Can Teach</label>
-        <input type="text" placeholder="e.g. Calculus, Data Structures, Organic Chemistry">
-      </div>
-      <div class="form-group"><label>Password</label><input type="password" placeholder="Create a strong password"></div>
-      <button class="btn-submit" onclick="handleSignup('tutor')">Apply as Tutor</button>
+      <div class="form-group"><label>Subjects You Can Teach</label><input type="text" id="tSubjects" placeholder="e.g. Calculus, Data Structures, Organic Chemistry"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="tPassword" placeholder="Create a strong password (min. 6 chars)"></div>
+      <div class="form-error" id="signupTutorError"></div>
+      <button class="btn-submit" id="signupTutorBtn" onclick="handleSignup('tutor')">Apply as Tutor</button>
     </div>
     <p class="modal-footer-text">Already have an account? <a href="#" onclick="switchModal('signupModal','loginModal')">Log in</a></p>
   </div>
 </div>
 
-<!-- ─── BOOKING MODAL ──────────────────────────────────── -->
+<!-- ─── BOOKING MODAL ── -->
 <div class="modal-overlay" id="bookingModal" onclick="handleOverlayClick(event, 'bookingModal')">
   <div class="modal" id="bookingModalContent">
     <button class="modal-close" onclick="closeModal('bookingModal')">×</button>
-    <div class="modal-logo">
-      <div class="modal-logo-icon">📅</div>
-      <span class="modal-logo-text">Book a Session</span>
-    </div>
+    <div class="modal-logo"><div class="modal-logo-icon">📅</div><span class="modal-logo-text">Book a Session</span></div>
     <h2 id="bookingTutorName">Book with Tutor</h2>
     <p class="modal-sub" id="bookingTutorInfo">Select your preferences below.</p>
     <div class="form-group">
@@ -1183,53 +619,327 @@
         <option>Mathematics</option><option>Physics</option><option>Chemistry</option>
         <option>Biology</option><option>Computer Science</option><option>Engineering</option>
         <option>English</option><option>Filipino</option><option>History</option>
+        <option>Psychology</option>
       </select>
     </div>
     <div class="form-group">
       <label>Session Type</label>
-      <select>
+      <select id="bookSessionType">
         <option>One-on-One (Online via Google Meet)</option>
         <option>One-on-One (In-person, MSU Campus)</option>
         <option>Group Session (up to 5 students, Online)</option>
       </select>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>Preferred Date</label><input type="date"></div>
-      <div class="form-group"><label>Preferred Time</label><input type="time"></div>
+      <div class="form-group"><label>Preferred Date</label><input type="date" id="bookDate"></div>
+      <div class="form-group"><label>Preferred Time</label><input type="time" id="bookTime"></div>
     </div>
     <div class="form-group">
       <label>Duration</label>
-      <select>
+      <select id="bookDuration">
         <option>1 Hour</option><option>1.5 Hours</option><option>2 Hours</option><option>3 Hours</option>
       </select>
     </div>
     <div class="form-group">
       <label>Notes for your Tutor (optional)</label>
-      <input type="text" placeholder="e.g. Midterm exam on limits and derivatives...">
+      <input type="text" id="bookNotes" placeholder="e.g. Midterm exam on limits and derivatives...">
     </div>
-    <button class="btn-submit" onclick="handleBooking()">Confirm Booking Request</button>
+    <div class="form-error" id="bookingError"></div>
+    <button class="btn-submit" id="bookingBtn" onclick="handleBooking()">Confirm Booking Request</button>
   </div>
 </div>
 
-<!-- ─── TOAST ──────────────────────────────────────────── -->
+<!-- ─── TOAST ── -->
 <div class="toast" id="toast">✓ Action completed!</div>
 
-<!-- ─── JAVASCRIPT ─────────────────────────────────────── -->
+<!-- ─── FIREBASE SDKs ── -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDm3xagQtIRtaCJBLAmoA1EDUFOgJUtKQc",
+    authDomain: "msugscconnect.firebaseapp.com",
+    projectId: "msugscconnect",
+    storageBucket: "msugscconnect.firebasestorage.app",
+    messagingSenderId: "876575116892",
+    appId: "1:876575116892:web:623fe91294a5c4bb6d2099",
+    measurementId: "G-XW5B7PFBW8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ── Track current user & booking target globally ──
+  window._currentUser = null;
+  window._currentUserData = null;
+  window._bookingTutorId = null;
+
+  // ── Auth state listener ──
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      window._currentUser = user;
+      const snap = await getDoc(doc(db, 'users', user.uid));
+      if (snap.exists()) {
+        window._currentUserData = snap.data();
+        updateNavForLoggedIn(snap.data());
+        showDashboardBanner(snap.data());
+        await updateBookingCount(user.uid);
+      }
+    } else {
+      window._currentUser = null;
+      window._currentUserData = null;
+      updateNavForLoggedOut();
+      hideDashboardBanner();
+    }
+  });
+
+  function updateNavForLoggedIn(userData) {
+    document.getElementById('navLoggedOut').style.display = 'none';
+    document.getElementById('navLoggedIn').style.display = 'flex';
+    const name = userData.firstName || userData.email || 'User';
+    document.getElementById('navUserName').textContent = name;
+    document.getElementById('navAvatar').textContent = name.charAt(0).toUpperCase();
+  }
+
+  function updateNavForLoggedOut() {
+    document.getElementById('navLoggedOut').style.display = 'flex';
+    document.getElementById('navLoggedIn').style.display = 'none';
+  }
+
+  function showDashboardBanner(userData) {
+    document.getElementById('dashboardBanner').classList.add('show');
+    document.getElementById('bannerName').textContent = userData.firstName || 'Student';
+    document.getElementById('bannerRole').textContent = `You are logged in as a ${userData.role === 'tutor' ? 'Tutor 🎓' : 'Student 📚'}`;
+    document.getElementById('statRole').textContent = userData.role === 'tutor' ? 'Tutor' : 'Student';
+    // Add padding to body so banner doesn't cover content
+    document.body.style.paddingTop = '48px';
+  }
+
+  function hideDashboardBanner() {
+    document.getElementById('dashboardBanner').classList.remove('show');
+    document.body.style.paddingTop = '0';
+  }
+
+  async function updateBookingCount(uid) {
+    try {
+      const q = query(collection(db, 'bookings'), where('studentId', '==', uid));
+      const snap = await getDocs(q);
+      document.getElementById('statBookings').textContent = snap.size;
+    } catch(e) {}
+  }
+
+  // ── SIGN UP ──
+  window.handleSignup = async function(role) {
+    const isStudent = role === 'student';
+    const emailId = isStudent ? 'sEmail' : 'tEmail';
+    const passId = isStudent ? 'sPassword' : 'tPassword';
+    const errId = isStudent ? 'signupStudentError' : 'signupTutorError';
+    const btnId = isStudent ? 'signupStudentBtn' : 'signupTutorBtn';
+
+    const email = document.getElementById(emailId).value.trim();
+    const password = document.getElementById(passId).value;
+    const firstName = document.getElementById(isStudent ? 'sFirstName' : 'tFirstName').value.trim();
+    const lastName = document.getElementById(isStudent ? 'sLastName' : 'tLastName').value.trim();
+    const studentId = document.getElementById(isStudent ? 'sStudentId' : 'tStudentId').value.trim();
+    const course = document.getElementById(isStudent ? 'sCourse' : 'tCourse').value;
+
+    const errEl = document.getElementById(errId);
+    errEl.classList.remove('show');
+
+    if (!firstName || !lastName || !email || !password || !studentId || !course) {
+      errEl.textContent = 'Please fill in all required fields.';
+      errEl.classList.add('show');
+      return;
+    }
+    if (password.length < 6) {
+      errEl.textContent = 'Password must be at least 6 characters.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    const btn = document.getElementById(btnId);
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Creating account...';
+
+    try {
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      const uid = userCred.user.uid;
+
+      const userData = {
+        uid, email, firstName, lastName, studentId, course,
+        role: role,
+        subjects: role === 'tutor' ? document.getElementById('tSubjects').value : '',
+        createdAt: serverTimestamp(),
+        status: role === 'tutor' ? 'pending' : 'active'
+      };
+
+      await setDoc(doc(db, 'users', uid), userData);
+
+      closeModal('signupModal');
+      showToast(role === 'tutor'
+        ? '🎓 Tutor application submitted! We\'ll verify your account shortly.'
+        : '✓ Account created! Welcome to MSUGSConnect!', 'success');
+    } catch(err) {
+      let msg = 'Something went wrong. Please try again.';
+      if (err.code === 'auth/email-already-in-use') msg = 'This email is already registered.';
+      if (err.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
+      if (err.code === 'auth/weak-password') msg = 'Password must be at least 6 characters.';
+      errEl.textContent = msg;
+      errEl.classList.add('show');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = isStudent ? 'Create Student Account' : 'Apply as Tutor';
+    }
+  };
+
+  // ── LOG IN ──
+  window.handleLogin = async function() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+    const btn = document.getElementById('loginBtn');
+    errEl.classList.remove('show');
+
+    if (!email || !password) {
+      errEl.textContent = 'Please enter your email and password.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Logging in...';
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      closeModal('loginModal');
+      showToast('✓ Welcome back! You are now logged in.', 'success');
+    } catch(err) {
+      let msg = 'Login failed. Please try again.';
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') msg = 'Invalid email or password.';
+      if (err.code === 'auth/too-many-requests') msg = 'Too many attempts. Please try again later.';
+      errEl.textContent = msg;
+      errEl.classList.add('show');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Log In to MSUGSConnect';
+    }
+  };
+
+  // ── LOG OUT ──
+  window.handleLogout = async function() {
+    await signOut(auth);
+    showToast('You have been logged out. See you soon!', '');
+  };
+
+  // ── FORGOT PASSWORD ──
+  window.handleForgotPassword = async function() {
+    const email = document.getElementById('loginEmail').value.trim();
+    if (!email) {
+      showToast('Please enter your email first, then click Forgot Password.', 'error');
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showToast('✓ Password reset email sent! Check your inbox.', 'success');
+    } catch(err) {
+      showToast('Could not send reset email. Check your email address.', 'error');
+    }
+  };
+
+  // ── BOOKING ──
+  window.handleBooking = async function() {
+    if (!window._currentUser) {
+      closeModal('bookingModal');
+      showToast('Please log in first to book a session.', 'error');
+      setTimeout(() => openModal('loginModal'), 1000);
+      return;
+    }
+
+    const subject = document.getElementById('bookSubject').value;
+    const sessionType = document.getElementById('bookSessionType').value;
+    const date = document.getElementById('bookDate').value;
+    const time = document.getElementById('bookTime').value;
+    const duration = document.getElementById('bookDuration').value;
+    const notes = document.getElementById('bookNotes').value;
+    const errEl = document.getElementById('bookingError');
+    const btn = document.getElementById('bookingBtn');
+
+    errEl.classList.remove('show');
+
+    if (!subject || subject === 'Select subject...') {
+      errEl.textContent = 'Please select a subject.'; errEl.classList.add('show'); return;
+    }
+    if (!date || !time) {
+      errEl.textContent = 'Please select a preferred date and time.'; errEl.classList.add('show'); return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Sending request...';
+
+    try {
+      const tutor = TUTORS.find(t => t.id === window._bookingTutorId);
+      const userData = window._currentUserData;
+
+      const bookingData = {
+        studentId: window._currentUser.uid,
+        studentName: userData ? `${userData.firstName} ${userData.lastName}` : window._currentUser.email,
+        studentEmail: window._currentUser.email,
+        tutorId: window._bookingTutorId,
+        tutorName: tutor ? tutor.name : 'Unknown',
+        tutorCourse: tutor ? tutor.course : '',
+        subject, sessionType, date, time, duration,
+        notes: notes || '',
+        status: 'pending',
+        createdAt: serverTimestamp()
+      };
+
+      await addDoc(collection(db, 'bookings'), bookingData);
+      await updateBookingCount(window._currentUser.uid);
+
+      closeModal('bookingModal');
+      showToast(`📅 Session request sent to ${tutor ? tutor.name : 'tutor'}! They will confirm shortly.`, 'success');
+    } catch(err) {
+      errEl.textContent = 'Failed to send booking. Please try again.';
+      errEl.classList.add('show');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Confirm Booking Request';
+    }
+  };
+
+  // Expose openBooking to global scope with auth check
+  window._openBookingFirebase = function(id) {
+    window._bookingTutorId = id;
+    if (!window._currentUser) {
+      showToast('Please log in first to book a session.', 'error');
+      setTimeout(() => openModal('loginModal'), 800);
+      return;
+    }
+    const t = TUTORS.find(x => x.id === id);
+    if (!t) return;
+    document.getElementById('bookingTutorName').textContent = `Book with ${t.name}`;
+    document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating}`;
+    document.getElementById('bookingError').classList.remove('show');
+    openModal('bookingModal');
+  };
+</script>
+
+<!-- ─── MAIN JAVASCRIPT ── -->
 <script>
-  /* ── TUTOR DATA ─────────────────────────────────────── */
   const TUTORS = [
-    { id:1, name:'Jerome Aparri', init:'A', course:'MS Physics', year:'Graduated', subjects:['Electrodynamics','Quantum Mechanics'], rating:5.0, sessions:1, available:true, photo:'tutor-jerome.jpg' },
-    { id:2, name:'David Vrant Campo', init:'D', course:'BS Chemistry', year:'3rd Year', subjects:['Organic Chemistry','Analytical Chemistry'], rating:4.9, sessions:127, available:true, photo:'tutor-david.jpg' },
-    { id:3, name:'Alliza Ignacio ', init:'A', course:'BS Mathematics', year:'3rd Year', subjects:['Calculus','Linear Algebra','Statistics'], rating:4.8, sessions:98, available:true, photo:'tutor-alliza.jpg' },
-    { id:4, name:'Andrea Danielle Buenaflor', init:'A', course:'BS Psychology', year:'4th Year', subjects:['General Psychology','Psychological Statistics'], rating:5.0, sessions:74, available:true,photo:'tutor-andrea.jpg'  },
-    { id:5, name:'Simson Ralph Arapoc', init:'S', course:'BS Physics', year:'3rd Year', subjects:['Physics I','Physics II','Electromagnetics'], rating:1.0, sessions:56, available:true, photo:'tutor-simson.jpg' },
+    { id:1, name:'Jerome Aparri', init:'A', course:'MS Physics', year:'Graduated', subjects:['Electrodynamics','Quantum Mechanics','Theoretical Mechanics'], rating:5.0, sessions:1, available:true, photo:'tutor-jerome.jpg' },
+    { id:2, name:'David Vrant Campo', init:'D', course:'BS Chemistry', year:'3rd Year', subjects:['Organic Chemistry','Analytical Chemistry','Biochemistry'], rating:4.9, sessions:127, available:true, photo:'tutor-david.jpg' },
+    { id:3, name:'Alliza Ignacio', init:'A', course:'BS Mathematics', year:'3rd Year', subjects:['Calculus','Linear Algebra','Statistics'], rating:4.8, sessions:98, available:true, photo:'tutor-alliza.jpg' },
+    { id:4, name:'Andrea Danielle Buenaflor', init:'A', course:'BS Psychology', year:'4th Year', subjects:['General Psychology','Psychological Statistics','Theories of Personality'], rating:5.0, sessions:74, available:true, photo:'tutor-andrea.jpg' },
+    { id:5, name:'Simson Ralph Arapoc', init:'S', course:'BS Physics', year:'3rd Year', subjects:['Physics I','Physics II','Electromagnetics'], rating:4.7, sessions:56, available:true, photo:'tutor-simson.jpg' },
     { id:6, name:'Jenn Trixie Zyne', init:'J', course:'BS Biology', year:'4th Year', subjects:['Cell Biology','Genetics','Microbiology'], rating:4.9, sessions:82, available:true, photo:'tutor-jenn.jpg' },
     { id:7, name:'Thomas Maderia', init:'T', course:'BS Engineering', year:'4th Year', subjects:['Statics','Dynamics','Thermodynamics'], rating:4.8, sessions:103, available:false, photo:'tutor-thomas.jpg' },
     { id:8, name:'Liv Gigantone', init:'L', course:'BS Computer Science', year:'4th Year', subjects:['Data Structures','Algorithms','Web Dev'], rating:4.9, sessions:127, available:true, photo:'tutor-liv.jpg' },
-    { id:9, name:'Vanixcelle Butohan', init:'V', course:'BS Information Technology', year:'4th Year', subjects:['Data Structures','Algorithms','Web Dev'], rating:4.9, sessions:127, available:false, photo:'tutor-van.jpg' },
-    { id:10, name:'Mary Antoniette Maguan', init:'M', course:'BS Accountancy', year:'3th Year', subjects:['Data Structures','Algorithms','Web Dev'], rating:4.9, sessions:127, available:true, photo:'tutor-mary.jpg'  },
-
-
+    { id:9, name:'Vanixcelle Butohan', init:'V', course:'BS Information Technology', year:'4th Year', subjects:['Networking','Database Systems','Web Dev'], rating:4.9, sessions:127, available:false, photo:'tutor-van.jpg' },
+    { id:10, name:'Mary Antoniette Maguan', init:'M', course:'BS Accountancy', year:'3rd Year', subjects:['Accounting','Business Math','Economics'], rating:4.9, sessions:127, available:true, photo:'tutor-mary.jpg' },
   ];
 
   function renderTutors(list) {
@@ -1238,10 +948,9 @@
       <div class="tutor-card fade-in">
         <div class="tutor-card-top">
           ${t.available ? '<div class="online-dot"></div>' : ''}
-          ${t.photo 
-            ? `<div class="tutor-avatar" style="padding:0;overflow:hidden;"><img src="${t.photo}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>`
-              : `<div class="tutor-avatar">${t.init}</div>`
-        }
+          ${t.photo
+            ? `<div class="tutor-avatar" style="padding:0;overflow:hidden;"><img src="${t.photo}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;object-position:center 20%;"></div>`
+            : `<div class="tutor-avatar">${t.init}</div>`}
           <div class="tutor-name">${t.name}</div>
           <div class="tutor-course">${t.course} • ${t.year}</div>
         </div>
@@ -1278,7 +987,18 @@
     filterTutors();
   }
 
-  /* ── MODALS ─────────────────────────────────────────── */
+  function openBooking(id) {
+    if (window._openBookingFirebase) {
+      window._openBookingFirebase(id);
+    } else {
+      const t = TUTORS.find(x=>x.id===id);
+      if (!t) return;
+      document.getElementById('bookingTutorName').textContent = `Book with ${t.name}`;
+      document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating}`;
+      openModal('bookingModal');
+    }
+  }
+
   function openModal(id) {
     document.getElementById(id).classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -1294,69 +1014,32 @@
     closeModal(from);
     setTimeout(() => openModal(to), 150);
   }
-
-  /* ── TABS ───────────────────────────────────────────── */
   function switchTab(role) {
     document.querySelectorAll('.modal-tab').forEach((t,i)=>t.classList.toggle('active', (role==='student'&&i===0)||(role==='tutor'&&i===1)));
     document.getElementById('panelStudent').classList.toggle('active', role==='student');
     document.getElementById('panelTutor').classList.toggle('active', role==='tutor');
   }
-
-  /* ── BOOKING ────────────────────────────────────────── */
-  function openBooking(id) {
-    const t = TUTORS.find(x=>x.id===id);
-    if (!t) return;
-    document.getElementById('bookingTutorName').textContent = `Book with ${t.name}`;
-    document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating}`;
-    openModal('bookingModal');
-  }
-
-  /* ── FORM HANDLERS ──────────────────────────────────── */
-  function handleLogin() {
-    closeModal('loginModal');
-    showToast('✓ Welcome back! Redirecting to your dashboard...', 'success');
-  }
-  function handleSignup(role) {
-    closeModal('signupModal');
-    showToast(role==='tutor' ? '🎓 Tutor application submitted! We\'ll verify your account shortly.' : '✓ Account created! Welcome to MSUGSConnect!', 'success');
-  }
-  function handleBooking() {
-    closeModal('bookingModal');
-    showToast('📅 Session request sent! Your tutor will confirm shortly.', 'success');
-  }
-
-  /* ── TOAST ──────────────────────────────────────────── */
   function showToast(msg, type='') {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.className = 'toast' + (type ? ' '+type : '');
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
+    setTimeout(() => t.classList.remove('show'), 4000);
   }
-
-  /* ── MOBILE NAV ─────────────────────────────────────── */
   function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
   function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
-
-  /* ── SCROLL ANIMATIONS ──────────────────────────────── */
   function observeFadeIns() {
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in:not(.visible)').forEach(el => io.observe(el));
   }
-
-  /* ── INIT ───────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     renderTutors(TUTORS);
     observeFadeIns();
-
-    // Search on Enter
     document.getElementById('searchInput').addEventListener('keydown', e => {
       if (e.key === 'Enter') filterTutors();
     });
-
-    // Keyboard close modals
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         ['loginModal','signupModal','bookingModal'].forEach(id => {
