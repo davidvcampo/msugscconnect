@@ -971,6 +971,9 @@
           <div class="tutor-course">${t.course} • ${t.year}</div>
         </div>
         <div class="tutor-card-body">
+          <div class="${t.rate === 'Free' || t.rate === '🆓 Free (Volunteer)' ? 'tutor-rate free' : 'tutor-rate'}">
+            ${t.rate === 'Free' || t.rate === '🆓 Free (Volunteer)' ? '🆓 Free' : '💰 ' + (t.rate || '₱80/hour')}
+          </div>
           <div class="tutor-subjects">
             ${t.subjects.map(s=>`<span class="subject-tag">${s}</span>`).join('')}
           </div>
