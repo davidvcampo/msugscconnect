@@ -138,6 +138,8 @@
     .tutor-rating { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 600; color: var(--text); }
     .tutor-rating span { color: var(--gold); }
     .tutor-sessions { font-size: 0.78rem; color: var(--gray); }
+    .tutor-rate { display: inline-flex; align-items: center; gap: 5px; background: rgba(201,168,76,0.15); border: 1px solid var(--gold); color: var(--maroon-dark); padding: 4px 10px; border-radius: 100px; font-size: 0.78rem; font-weight: 700; margin-bottom: 12px; }
+    .tutor-rate.free { background: rgba(5,150,105,0.1); border-color: #059669; color: #059669; }
     .btn-book { width: 100%; padding: 10px; background: var(--maroon); color: var(--white); border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--transition); }
     .btn-book:hover { background: var(--maroon-dark); }
 
@@ -351,9 +353,9 @@
 <section id="home">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-badge">MSU Gen. Santos City • Student-Powered Platform</div>
+      <div class="hero-badge">MSU Gen. Santos City • Peer Tutoring Platform</div>
       <h1 class="hero-title">Connecting <span class="accent">Minds,</span><br>Fostering Excellence<br>in One Swipe!</h1>
-      <p class="hero-sub">MSUGSConnect is the official peer-tutoring platform of Mindanao State University – Gen. Santos City. Get matched with top student-tutors in any subject, any time.</p>
+      <p class="hero-sub">MSUGSConnect is the official peer-tutoring platform of Mindanao State University – Gen. Santos City. Get matched with top student-tutors in any subject, at student-friendly rates.</p>
       <div class="hero-actions">
         <button class="btn-hero-primary" onclick="document.getElementById('tutors').scrollIntoView({behavior:'smooth'})">Find a Tutor →</button>
         <button class="btn-hero-secondary" onclick="openModal('signupModal')">Become a Tutor</button>
@@ -406,7 +408,7 @@
     <div class="steps-grid">
       <div class="step-card fade-in"><div class="step-icon">📝<div class="step-num">1</div></div><h3>Create Your Account</h3><p>Sign up using your MSU student ID and verify your enrollment status.</p></div>
       <div class="step-card fade-in"><div class="step-icon">🔎<div class="step-num">2</div></div><h3>Browse Tutors</h3><p>Search by subject, year level, or availability to find the perfect match.</p></div>
-      <div class="step-card fade-in"><div class="step-icon">📅<div class="step-num">3</div></div><h3>Book a Session</h3><p>Schedule a one-on-one or group session at a time that works for you.</p></div>
+      <div class="step-card fade-in"><div class="step-icon">📅<div class="step-num">3</div></div><h3>Book & Pay</h3><p>Schedule a session at student-friendly rates and pay your tutor directly.</p></div>
       <div class="step-card fade-in"><div class="step-icon">🎓<div class="step-num">4</div></div><h3>Learn & Excel</h3><p>Attend your session, learn effectively, and rate your tutor.</p></div>
     </div>
   </div>
@@ -421,19 +423,19 @@
       <p class="section-sub">From STEM to Humanities — our student-tutors cover all your coursework needs.</p>
     </div>
     <div class="subjects-grid">
-      <div class="subject-chip fade-in" onclick="filterBySubject('Mathematics')"><div class="s-icon">📐</div><div class="s-name">Mathematics</div><div class="s-count">1 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Physics')"><div class="s-icon">⚛️</div><div class="s-name">Physics</div><div class="s-count">2 tutors</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Chemistry')"><div class="s-icon">🧪</div><div class="s-name">Chemistry</div><div class="s-count">1 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Biology')"><div class="s-icon">🧬</div><div class="s-name">Biology</div><div class="s-count">1 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Computer Science')"><div class="s-icon">💻</div><div class="s-name">Computer Science</div><div class="s-count">1 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Engineering')"><div class="s-icon">⚙️</div><div class="s-name">Engineering</div><div class="s-count">1 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('English')"><div class="s-icon">📖</div><div class="s-name">English</div><div class="s-count">0 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Filipino')"><div class="s-icon">🇵🇭</div><div class="s-name">Filipino</div><div class="s-count">0 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('History')"><div class="s-icon">📜</div><div class="s-name">History</div><div class="s-count">0 tutor</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Economics')"><div class="s-icon">📊</div><div class="s-name">Economics</div><div class="s-count">0 tutor</div></div>
-      <div class="subject-chip fade-in"><div class="s-icon">🎨</div><div class="s-name">Arts & Humanities</div><div class="s-count">0 tutor</div></div>
-      <div class="subject-chip fade-in"><div class="s-icon">🏥</div><div class="s-name">Health Sciences</div><div class="s-count">0 tutors</div></div>
-      <div class="subject-chip fade-in" onclick="filterBySubject('Psychology')"><div class="s-icon">🧠</div><div class="s-name">Psychology</div><div class="s-count">1 tutor</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Mathematics')"><div class="s-icon">📐</div><div class="s-name">Mathematics</div><div class="s-count">48 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Physics')"><div class="s-icon">⚛️</div><div class="s-name">Physics</div><div class="s-count">31 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Chemistry')"><div class="s-icon">🧪</div><div class="s-name">Chemistry</div><div class="s-count">27 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Biology')"><div class="s-icon">🧬</div><div class="s-name">Biology</div><div class="s-count">22 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Computer Science')"><div class="s-icon">💻</div><div class="s-name">Computer Science</div><div class="s-count">55 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Engineering')"><div class="s-icon">⚙️</div><div class="s-name">Engineering</div><div class="s-count">38 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('English')"><div class="s-icon">📖</div><div class="s-name">English</div><div class="s-count">19 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Filipino')"><div class="s-icon">🇵🇭</div><div class="s-name">Filipino</div><div class="s-count">15 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('History')"><div class="s-icon">📜</div><div class="s-name">History</div><div class="s-count">12 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Economics')"><div class="s-icon">📊</div><div class="s-name">Economics</div><div class="s-count">17 tutors</div></div>
+      <div class="subject-chip fade-in"><div class="s-icon">🎨</div><div class="s-name">Arts & Humanities</div><div class="s-count">9 tutors</div></div>
+      <div class="subject-chip fade-in"><div class="s-icon">🏥</div><div class="s-name">Health Sciences</div><div class="s-count">24 tutors</div></div>
+      <div class="subject-chip fade-in" onclick="filterBySubject('Psychology')"><div class="s-icon">🧠</div><div class="s-name">Psychology</div><div class="s-count">8 tutors</div></div>
     </div>
   </div>
 </section>
@@ -444,11 +446,11 @@
     <div class="section-header fade-in">
       <div class="section-tag">Our Tutors</div>
       <h2 class="section-title">Meet Our <span class="accent">Top Tutors</span></h2>
-      <p class="section-sub">All tutors are verified MSU-GenSan students with excellent academic standing.</p>
+      <p class="section-sub">All tutors are verified MSU-GenSan students with excellent academic standing. Rates start at ₱30/hour.</p>
     </div>
     <div class="tutors-grid" id="tutorsGrid"></div>
     <div style="text-align:center; margin-top:2.5rem;" class="fade-in">
-      <button class="btn-hero-primary" onclick="openModal('signupModal')">View All Tutors →</button>
+      <button class="btn-hero-primary" onclick="openModal('signupModal')">Browse All Tutors →</button>
     </div>
   </div>
 </section>
@@ -463,7 +465,7 @@
     </div>
     <div class="why-grid">
       <div class="why-card fade-in"><div class="why-icon">✅</div><h3>Verified MSU Students Only</h3><p>Every tutor is a currently enrolled MSU-GenSan student with verified academic records and good standing.</p></div>
-      <div class="why-card fade-in"><div class="why-icon">🆓</div><h3>Free to Use</h3><p>MSUGSConnect is completely free for all students. No hidden charges, no subscription fees — ever.</p></div>
+      <div class="why-card fade-in"><div class="why-icon">💸</div><h3>Affordable, Student-Friendly Rates</h3><p>Tutors set their own rates starting as low as ₱30/hour — fair compensation for their time, easy on your budget.</p></div>
       <div class="why-card fade-in"><div class="why-icon">📚</div><h3>MSU Curriculum-Aligned</h3><p>Tutors know your exact professors, syllabi, and exam formats — maximizing your learning efficiency.</p></div>
       <div class="why-card fade-in"><div class="why-icon">⚡</div><h3>Instant Matching</h3><p>Our smart system matches you with the best available tutor for your subject in seconds.</p></div>
       <div class="why-card fade-in"><div class="why-icon">🌐</div><h3>Online & In-Person</h3><p>Choose between flexible online sessions via Google Meet or face-to-face at campus study areas.</p></div>
@@ -493,10 +495,10 @@
     <div class="cta-box fade-in">
       <div class="cta-content">
         <h2>Ready to Excel at MSU-GenSan?</h2>
-        <p>Join thousands of students already connecting and learning together.</p>
+        <p>Connect with verified student-tutors at rates designed for students, by students.</p>
       </div>
       <div class="cta-actions">
-        <button class="btn-cta-white" onclick="openModal('signupModal')">Get Started Free</button>
+        <button class="btn-cta-white" onclick="openModal('signupModal')">Find a Tutor Now</button>
         <button class="btn-cta-outline" onclick="openModal('signupModal')">Become a Tutor</button>
       </div>
     </div>
@@ -509,7 +511,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand-name">MSUGS<span>Connect</span></div>
-        <p>The official peer-tutoring platform of Mindanao State University – Gen. Santos City. Connecting minds, fostering excellence — one swipe at a time.</p>
+        <p>The official peer-tutoring platform of MSU – Gen. Santos City. Affordable, student-friendly tutoring by your fellow Mustangs.</p>
       </div>
       <div class="footer-col"><h4>Platform</h4><ul><li><a href="#how-it-works">How It Works</a></li><li><a href="#tutors">Find Tutors</a></li><li><a href="#subjects">Browse Subjects</a></li><li><a href="#" onclick="openModal('signupModal')">Become a Tutor</a></li></ul></div>
       <div class="footer-col"><h4>Support</h4><ul><li><a href="#">FAQs</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Report an Issue</a></li><li><a href="#">Community Guidelines</a></li></ul></div>
@@ -550,7 +552,7 @@
     <button class="modal-close" onclick="closeModal('signupModal')">×</button>
     <div class="modal-logo"><div class="modal-logo-icon">M</div><span class="modal-logo-text">MSUGSConnect</span></div>
     <h2>Join MSUGSConnect</h2>
-    <p class="modal-sub">Free for all MSU-GenSan students. Choose your role:</p>
+    <p class="modal-sub">Join MSU-GenSan's peer-tutoring community. Choose your role:</p>
     <div class="modal-tabs">
       <button class="modal-tab active" onclick="switchTab('student')">📚 I'm a Student</button>
       <button class="modal-tab" onclick="switchTab('tutor')">🎓 I'm a Tutor</button>
@@ -597,6 +599,19 @@
         </select>
       </div>
       <div class="form-group"><label>Subjects You Can Teach</label><input type="text" id="tSubjects" placeholder="e.g. Calculus, Data Structures, Organic Chemistry"></div>
+      <div class="form-group">
+        <label>Session Rate 💰</label>
+        <select id="tRate">
+          <option value="₱30/hour">₱30/hour (Budget-Friendly)</option>
+          <option value="₱50/hour">₱50/hour</option>
+          <option value="₱80/hour">₱80/hour</option>
+          <option value="₱100/hour">₱100/hour</option>
+          <option value="₱150/hour">₱150/hour</option>
+          <option value="₱200/hour">₱200/hour</option>
+          <option value="Negotiable">Negotiable</option>
+          <option value="Free">🆓 Free (Volunteer)</option>
+        </select>
+      </div>
       <div class="form-group"><label>Password</label><input type="password" id="tPassword" placeholder="Create a strong password (min. 6 chars)"></div>
       <div class="form-error" id="signupTutorError"></div>
       <button class="btn-submit" id="signupTutorBtn" onclick="handleSignup('tutor')">Apply as Tutor</button>
@@ -772,6 +787,7 @@
         uid, email, firstName, lastName, studentId, course,
         role: role,
         subjects: role === 'tutor' ? document.getElementById('tSubjects').value : '',
+        rate: role === 'tutor' ? (document.getElementById('tRate') ? document.getElementById('tRate').value : 'Free') : '',
         createdAt: serverTimestamp(),
         status: role === 'tutor' ? 'pending' : 'active'
       };
@@ -921,7 +937,7 @@
     const t = TUTORS.find(x => x.id === id);
     if (!t) return;
     document.getElementById('bookingTutorName').textContent = `Book with ${t.name}`;
-    document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating}`;
+    document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating} • 💰 ${t.rate || 'Free'}`;
     document.getElementById('bookingError').classList.remove('show');
     openModal('bookingModal');
   };
@@ -930,16 +946,16 @@
 <!-- ─── MAIN JAVASCRIPT ── -->
 <script>
   const TUTORS = [
-    { id:1, name:'Jerome Aparri', init:'A', course:'MS Physics', year:'Graduated', subjects:['Electrodynamics','Quantum Mechanics','Theoretical Mechanics'], rating:5.0, sessions:67, available:true, photo:'tutor-jerome.jpg' },
-    { id:2, name:'David Vrant Campo', init:'D', course:'BS Chemistry', year:'3rd Year', subjects:['Organic Chemistry','Analytical Chemistry','Biochemistry'], rating:4.9, sessions:127, available:true, photo:'tutor-david.jpg' },
-    { id:3, name:'Alliza Ignacio', init:'A', course:'BS Mathematics', year:'3rd Year', subjects:['Calculus','Linear Algebra','Statistics'], rating:4.8, sessions:98, available:true, photo:'tutor-alliza.jpg' },
-    { id:4, name:'Andrea Danielle Buenaflor', init:'A', course:'BS Psychology', year:'4th Year', subjects:['General Psychology','Psychological Statistics'], rating:5.0, sessions:74, available:true, photo:'tutor-andrea.jpg' },
-    { id:5, name:'Simson Ralph Arapoc', init:'S', course:'BS Physics', year:'3rd Year', subjects:['Physics I','Physics II','Electromagnetics'], rating:4.7, sessions:56, available:true, photo:'tutor-simson.jpg' },
-    { id:6, name:'Jenn Trixie Zyne', init:'J', course:'BS Biology', year:'4th Year', subjects:['Cell Biology','Genetics','Microbiology'], rating:4.9, sessions:82, available:true, photo:'tutor-jenn.jpg' },
-    { id:7, name:'Thomas Maderia', init:'T', course:'BS Engineering', year:'4th Year', subjects:['Statics','Dynamics','Thermodynamics'], rating:4.8, sessions:103, available:false, photo:'tutor-thomas.jpg' },
-    { id:8, name:'Liv Gigantone', init:'L', course:'BS Computer Science', year:'4th Year', subjects:['Data Structures','Algorithms','Web Dev'], rating:4.9, sessions:127, available:true, photo:'tutor-liv.jpg' },
-    { id:9, name:'Vanixcelle Butohan', init:'V', course:'BS Information Technology', year:'4th Year', subjects:['Networking','Database Systems','Web Dev'], rating:4.9, sessions:127, available:false, photo:'tutor-van.jpg' },
-    { id:10, name:'Mary Antoniette Maguan', init:'M', course:'BS Accountancy', year:'3rd Year', subjects:['Accounting','Business Math','Economics'], rating:4.9, sessions:127, available:true, photo:'tutor-mary.jpg' },
+    { id:1, name:'Jerome Aparri', init:'A', course:'MS Physics', year:'Graduated', subjects:['Electrodynamics','Quantum Mechanics','Theoretical Mechanics'], rating:5.0, sessions:1, available:true, photo:'tutor-jerome.jpg', rate:'₱150/hour' },
+    { id:2, name:'David Vrant Campo', init:'D', course:'BS Chemistry', year:'3rd Year', subjects:['Organic Chemistry','Analytical Chemistry','Biochemistry'], rating:4.9, sessions:127, available:true, photo:'tutor-david.jpg', rate:'₱80/hour' },
+    { id:3, name:'Alliza Ignacio', init:'A', course:'BS Mathematics', year:'3rd Year', subjects:['Calculus','Linear Algebra','Statistics'], rating:4.8, sessions:98, available:true, photo:'tutor-alliza.jpg', rate:'₱80/hour' },
+    { id:4, name:'Andrea Danielle Buenaflor', init:'A', course:'BS Psychology', year:'4th Year', subjects:['General Psychology','Psychological Statistics','Theories of Personality'], rating:5.0, sessions:74, available:true, photo:'tutor-andrea.jpg', rate:'₱100/hour' },
+    { id:5, name:'Simson Ralph Arapoc', init:'S', course:'BS Physics', year:'3rd Year', subjects:['Physics I','Physics II','Electromagnetics'], rating:4.7, sessions:56, available:true, photo:'tutor-simson.jpg', rate:'₱50/hour' },
+    { id:6, name:'Jenn Trixie Zyne', init:'J', course:'BS Biology', year:'4th Year', subjects:['Cell Biology','Genetics','Microbiology'], rating:4.9, sessions:82, available:true, photo:'tutor-jenn.jpg', rate:'₱80/hour' },
+    { id:7, name:'Thomas Maderia', init:'T', course:'BS Engineering', year:'4th Year', subjects:['Statics','Dynamics','Thermodynamics'], rating:4.8, sessions:103, available:false, photo:'tutor-thomas.jpg', rate:'₱150/hour' },
+    { id:8, name:'Liv Gigantone', init:'L', course:'BS Computer Science', year:'4th Year', subjects:['Data Structures','Algorithms','Web Dev'], rating:4.9, sessions:127, available:true, photo:'tutor-liv.jpg', rate:'₱100/hour' },
+    { id:9, name:'Vanixcelle Butohan', init:'V', course:'BS Information Technology', year:'4th Year', subjects:['Networking','Database Systems','Web Dev'], rating:4.9, sessions:127, available:false, photo:'tutor-van.jpg', rate:'₱80/hour' },
+    { id:10, name:'Mary Antoniette Maguan', init:'M', course:'BS Accountancy', year:'3rd Year', subjects:['Accounting','Business Math','Economics'], rating:4.9, sessions:127, available:true, photo:'tutor-mary.jpg', rate:'₱50/hour' },
   ];
 
   function renderTutors(list) {
@@ -994,7 +1010,7 @@
       const t = TUTORS.find(x=>x.id===id);
       if (!t) return;
       document.getElementById('bookingTutorName').textContent = `Book with ${t.name}`;
-      document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating}`;
+      document.getElementById('bookingTutorInfo').textContent = `${t.course} • ${t.year} • ★ ${t.rating} • 💰 ${t.rate || 'Free'}`;
       openModal('bookingModal');
     }
   }
